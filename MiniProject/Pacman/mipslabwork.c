@@ -35,7 +35,7 @@ int pacman_power_up;
 int selected_map;
 int current_direction;
 
-char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZZZZZZZZZZZZZZ";
 
 /* Interrupt Service Routine */
 void user_isr( void )
@@ -212,10 +212,10 @@ void clear_menu(){
 
 void paint_pacman(){
   static int toggle = 0;
-  if(toggle>=10)
+  if(toggle>=20)
     toggle = 0;
 
-  if(toggle>=5){
+  if(toggle>=10){
     switch(current_direction){
       case UP:
         draw_picture(pacman.x_coord, pacman.y_coord, pacman_open_mouth_up, 8);
@@ -322,29 +322,27 @@ void enter_name(int xxx){
 
   clear_menu();
 
-
-  char name[7] = "??????";
+  char name[4] = "???";
   char to_display[2];
   to_display[1] = 0;
-  int i=0;
-  int j=0;
+  volatile int i=0;
+  volatile int jjj=0;
   
   work_delay(1000);
 
 
   while(1){
+    volatile int buttons = getbtns();
 
-    PORTE = i+3;
+    PORTE = i+1;
     to_display[0] = alphabet[i];
     display_string(0, to_display);
     display_string(1, name);
     display_update();
 
-    if(j>5){
+    if(jjj>2){
       break;
     }
-
-    int buttons = getbtns();
 
     //Down
     if(buttons == 1){
@@ -363,21 +361,21 @@ void enter_name(int xxx){
 
     //Pick 
     if(buttons == 4){
-      name[j]=alphabet[i];
-      j++;
+      name[jjj]=alphabet[i];
+      jjj+=1;
       i=0;
       work_delay(300);
     }
   }
 
   if(xxx==1){
-    for(i=0;i<7;i++){
-      list_of_highscores.name1[i] = name[i];
+    for(i=0;i<4;i++){
+      list_of_highscores.name1[i] =(char) name[i];
     }
   }
   else{
-    for(i=0;i<7;i++){
-      list_of_highscores.name1[i] = name[i];
+    for(i=0;i<4;i++){
+      list_of_highscores.name2[i] =(char) name[i];
     }
   }
   return;

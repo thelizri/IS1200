@@ -72,11 +72,11 @@ struct picture_object{
 
 struct highscore_list{
    int first_place;
-   char name1[7];
+   char name1[20];
    int second_place;
-   char name2[7];
+   char name2[20];
    int third_place;
-   char name3[7];
+   char name3[20];
 };
 
 extern int game_score;
