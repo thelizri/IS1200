@@ -48,7 +48,7 @@ void user_isr( void )
     x = x&0x01;
     if(x){
       timeoutcount++;
-      if(timeoutcount>=5){
+      if(timeoutcount>=4){
         timeoutcount = 0;
         if(!pause){
           set_valid_direction_for_ghost();
@@ -204,10 +204,10 @@ void display_menu(){
 }
 
 void clear_menu(){
-  display_string(0, "                                 ");
-  display_string(1, "                                 ");
-  display_string(2, "                                 ");
-  display_string(3, "                                 ");
+  display_string(0, "");
+  display_string(1, "");
+  display_string(2, "");
+  display_string(3, "");
 }
 
 void paint_pacman(){
