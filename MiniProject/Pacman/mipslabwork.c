@@ -22,7 +22,6 @@ void clear_menu();
 void paint_pacman();
 void select_a_map();
 void display_score();
-void test_delay();
 void work_delay(int x);
 void enter_highscore();
 void enter_name(int xxx);
@@ -98,6 +97,9 @@ void labinit( void )
   //Buttons and switches
   TRISDSET = 0x0FE0;
   TRISFSET = 0x02;
+
+  game_score = 1000;
+  enter_highscore();
 
   display_menu();
   select_a_map();
@@ -275,7 +277,7 @@ void select_a_map(){
     if(buttons == 4){
       display_score();
       display_menu();
-      test_delay();
+      work_delay(1000);
     }
 
     buttons = getbtn1();
@@ -294,25 +296,13 @@ void display_score(){
   display_string(3, itoaconv(list_of_highscores.second_place));
   display_update();
 
-  test_delay();
+  work_delay(1000);
 
   while(1){
     int buttons = getbtns();
     if(buttons == 4)
       break;
   }
-}
-
-void test_delay(){
-  int i;
-  int j;
-  for(i=0;i<1000;i++){
-    for(j=0;j<4500;j++){
-      //Do nothing
-    }
-  }
-
-  return;
 }
 
 void enter_highscore(){
