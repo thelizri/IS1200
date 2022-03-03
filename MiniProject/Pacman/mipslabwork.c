@@ -321,6 +321,7 @@ void enter_highscore(){
 void enter_name(int xxx){
 
   clear_menu();
+  work_delay(400);
 
   char name[4] = "???";
   char to_display[2];
@@ -332,6 +333,7 @@ void enter_name(int xxx){
 
 
   while(1){
+    work_delay(100);
     volatile int buttons = getbtns();
 
     PORTE = i+1;
