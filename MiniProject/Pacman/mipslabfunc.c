@@ -156,7 +156,7 @@ void display_image(int x, const uint8_t *data) {
 		DISPLAY_CHANGE_TO_DATA_MODE;
 		
 		for(j = 0; j < 32*4; j++) //Change 32 to 32*4 so the whole screen updates
-			spi_send_recv(~~data[i*32*4 + j]); //Change 32 to 32*4 so the whole screen updates
+			spi_send_recv(~data[i*32*4 + j]); //Change 32 to 32*4 so the whole screen updates
 	}
 }
 
