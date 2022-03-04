@@ -35,7 +35,7 @@ int pacman_power_up;
 int selected_map;
 int current_direction;
 
-char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZZZZZZZZZZZZZZ";
+char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 /* Interrupt Service Routine */
 void user_isr( void )
@@ -98,8 +98,10 @@ void labinit( void )
   TRISDSET = 0x0FE0;
   TRISFSET = 0x02;
 
+  /*
   game_score = 1000;
   enter_highscore();
+  */
 
   display_menu();
   select_a_map();
@@ -185,9 +187,9 @@ void game_over(void){
   display_update();
 
   //Enter highscore
-  work_delay(5000);
+  work_delay(3000);
   enter_highscore();
-  work_delay(5000);
+  work_delay(3000);
   display_score();
 
   while(1){
